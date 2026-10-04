@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPHELIA — Hackathon Presentation (Enlarged Edition)</title>
+<style>
+  :root {
+    --bg-slate: #0b1120;
+    --card-bg: rgba(255, 255, 255, 0.96);
+    --card-border: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-muted: #475569;
+    --accent-blue: #0284c7;
+    --accent-cyan: #0ea5e9;
+    --accent-teal: #0d9488;
+    --term-bg: #0b1120;
+    --term-text: #f1f5f9;
+    --term-cyan: #38bdf8;
+    --term-green: #34d399;
+    --term-amber: #fbbf24;
+    --term-gray: #94a3b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #070b14;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 16px;
+    overflow-x: hidden;
+  }
+
+  /* Presentation Stage - Maximized 16:9 canvas */
+  .stage-container {
+    width: 100%;
+    max-width: 1300px;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(14, 165, 233, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 26px 34px 22px 34px;
+    background: url('media_1791123042663.png') no-repeat center center;
+    background-size: cover;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .slide.active {
+    display: flex;
+    animation: fadeIn 0.25s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.995); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Header Components - ENLARGED */
+  .slide-header {
+    margin-bottom: 12px;
+  }
+  .tag-pill {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 9999px;
+    background: #e0f2fe;
+    border: 1px solid #bae6fd;
+    color: #0369a1;
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .slide-title {
+    font-size: 30px;
+    font-weight: 850;
+    color: #0f172a;
+    line-height: 1.15;
+  }
+  .slide-subtitle {
+    font-size: 15px;
+    color: #475569;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  /* Footer Components */
+  .slide-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    border-top: 1px solid rgba(203, 213, 225, 0.7);
+    padding-top: 8px;
+    margin-top: auto;
+  }
+  .slide-footer .brand {
+    color: #0369a1;
+    font-weight: 800;
+  }
+
+  /* Content Cards & Containers */
+  .card {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Slide 1 Styles - ENLARGED */
+  .s1-container {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px 34px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .s1-hero h1 {
+    font-size: 60px;
+    font-weight: 900;
+    color: #0f172a;
+    letter-spacing: -1.5px;
+    line-height: 1;
+  }
+  .s1-hero h2 {
+    font-size: 25px;
+    font-weight: 750;
+    color: #0e7490;
+    margin-top: 8px;
+  }
+  .s1-hero p.motto {
+    font-size: 18px;
+    font-style: italic;
+    color: #475569;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .pipeline-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 18px 0;
+    gap: 8px;
+  }
+  .pipe-step {
+    flex: 1;
+    padding: 14px 10px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid;
+  }
+  .pipe-step .title { font-size: 13.5px; font-weight: 800; }
+  .pipe-step .desc { font-size: 11px; color: #475569; margin-top: 3px; font-weight: 600; }
+  .pipe-arrow { font-size: 24px; color: #94a3b8; font-weight: bold; padding: 0 4px; }
+
+  .s1-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .pillar-box {
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .pillar-box h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0284c7;
+    margin-bottom: 6px;
+  }
+  .pillar-box p {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+  }
+
+  /* Terminal Window Styles (Picture 2 Exact Match - ENLARGED) */
+  .terminal-window {
+    background: #0b1120;
+    border: 1.5px solid #1e293b;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    font-family: Consolas, "Courier New", monospace;
+  }
+  .terminal-topbar {
+    background: #131c30;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border-bottom: 1px solid #1e293b;
+  }
+  .term-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .dot-red { background: #ef4444; }
+  .dot-yellow { background: #f59e0b; }
+  .dot-green { background: #10b981; }
+  .term-title {
+    margin-left: 8px;
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 700;
+  }
+  .term-body {
+    padding: 16px 20px;
+    color: #f1f5f9;
+    font-size: 12.5px;
+    line-height: 1.48;
+    white-space: pre-wrap;
+  }
+  .t-cyan { color: #38bdf8; font-weight: bold; }
+  .t-green { color: #34d399; font-weight: bold; }
+  .t-amber { color: #fbbf24; }
+  .t-gray { color: #94a3b8; }
+  .t-white { color: #f8fafc; }
+
+  /* Grid Layouts - TIGHT GAP-FREE */
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 2.3fr 1fr;
+    gap: 16px;
+    height: calc(100% - 90px);
+  }
+  .grid-even-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    height: calc(100% - 90px);
+  }
+  .grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    height: calc(100% - 90px);
+  }
+  .grid-4col {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* Controls Bar */
+  .controls {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #94a3b8;
+    font-size: 13.5px;
+  }
+  .btn-nav {
+    background: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    padding: 9px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+  .btn-nav:hover {
+    background: #0284c7;
+    border-color: #38bdf8;
+  }
+  .slide-indicator {
+    font-weight: 800;
+    color: #38bdf8;
+  }
+
+  .btn-action-primary {
+    background: #0284c7;
+    color: #ffffff;
+    border: 1px solid #38bdf8;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 13.5px;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .btn-action-secondary {
+    background: #334155;
+    color: #f8fafc;
+    border: 1px solid #475569;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: 750;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage-container" id="stage">
+
+  <!-- SLIDE 1: SOLUTION -->
+  <div class="slide active" id="slide-1">
+    <div class="s1-container">
+      <div class="s1-hero">
+        <div class="tag-pill">HACKATHON PROBLEM STATEMENT: AI + n8n WORKFLOW AUTOMATION</div>
+        <h1>OPHELIA</h1>
+        <h2>Your Intelligent Personal Automation Assistant</h2>
+        <p class="motto">From &ldquo;What should I do?&rdquo; to &ldquo;It&rsquo;s already handled.&rdquo;</p>
+      </div>
+
+      <div class="pipeline-flow">
+        <div class="pipe-step" style="background:#f1f5f9; border-color:#64748b;">
+          <div class="title" style="color:#475569;">1. USER COMMAND</div>
+          <div class="desc">Natural intent text input</div>
+        </div>
+        <div class="pipe-arrow">&rarr;</div>
+        <div class="pipe-step" style="background:#e0f2fe; border-color:#0284c7;">
+          <div class="title" style="color:#0369a1;">2. OPHELIA BRAIN</div>
+          <div class="desc">LLM reasoning &amp; context</div>
+        </div>
+        <div class="pipe-arrow">&rarr;</div>
+        <div class="pipe-step" style="background:#e6fffa; border-color:#0d9488;">
+          <div class="title" style="color:#0f766e;">3. CONTEXT &amp; PLAN</div>
+          <div class="desc">Schedule &amp; dependency map</div>
+        </div>
+        <div class="pipe-arrow">&rarr;</div>
+        <div class="pipe-step" style="background:#fef3c7; border-color:#d97706;">
+          <div class="title" style="color:#b45309;">4. n8n BACKBONE</div>
+          <div class="desc">Multi-step orchestration</div>
+        </div>
+        <div class="pipe-arrow">&rarr;</div>
+        <div class="pipe-step" style="background:#ecfdf5; border-color:#10b981;">
+          <div class="title" style="color:#047857;">5. EXECUTED RESULT</div>
+          <div class="desc">Calendar, tasks &amp; APIs done</div>
+        </div>
+      </div>
+
+      <div class="s1-pillars">
+        <div class="pillar-box">
+          <h4>&#9733; Visual Command Center</h4>
+          <p>NOT a generic chat window. A dynamic dashboard surfacing active priorities, upcoming deadlines, and real-time execution logs.</p>
+        </div>
+        <div class="pillar-box">
+          <h4>&#9733; Proactive Assistant</h4>
+          <p>Monitors schedules, workloads, and task backlogs in the background. Detects conflicts and proposes actions before emergencies happen.</p>
+        </div>
+        <div class="pillar-box">
+          <h4>&#9733; One-Command Execution</h4>
+          <p>Decomposes a single high-level instruction (&ldquo;Organize my week&rdquo;) into dozens of coordinated, multi-service actions via n8n.</p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span class="brand">OPHELIA &bull; Intelligent Personal Automation Assistant</span>
+        <span>Slide 1 of 10</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: TECHNOLOGY STACK & SYSTEM ARCHITECTURE -->
+  <div class="slide" id="slide-2">
+    <div class="slide-header">
+      <div class="tag-pill">SYSTEM ARCHITECTURE &amp; TECH STACK</div>
+      <div class="slide-title">Clean Layered Architecture: Intelligence Meets Orchestration</div>
+      <div class="slide-subtitle">n8n serves as the automation backbone connecting LLM intelligence to real-world services</div>
+    </div>
+
+    <div class="grid-2col">
+      <!-- Terminal Architecture Diagram (Matching Picture 2) -->
+      <div class="terminal-window">
+        <div class="terminal-topbar">
+          <span class="term-dot dot-red"></span>
+          <span class="term-dot dot-yellow"></span>
+          <span class="term-dot dot-green"></span>
+          <span class="term-title">ophelia-architecture-runtime.sh (End-to-End Orchestration Loop)</span>
+        </div>
+        <div class="term-body"><span class="t-cyan">USER INTERFACE (AI Personal Command Center)</span>
+├── Active Attention Feed        <span class="t-gray">&larr; high-priority tasks, deadlines, live schedule conflicts</span>
+├── Proactive Action Cards     <span class="t-gray">&larr; 1-click [Review Plan] or [Execute Action]</span>
+├── Natural Language Input     <span class="t-gray">&larr; single high-level command ("Organize my week")</span>
+└── Workflow Audit Log         <span class="t-gray">&larr; live execution traces &amp; completed automations</span>
+        │
+        ▼  <span class="t-amber">[REST / WebSocket JSON Payload]</span>
+<span class="t-cyan">AI INTELLIGENCE LAYER (LLM Brain)</span>
+├── Intent Parser &amp; Router     <span class="t-gray">&larr; extracts entities, dates, constraints &amp; intent</span>
+├── Context Extractor          <span class="t-gray">&larr; pulls active tasks, commitments &amp; user habits</span>
+├── Multi-Step Goal Planner    <span class="t-gray">&larr; decomposes request into deterministic tool calls</span>
+└── Action Safety Classifier   <span class="t-gray">&larr; classifies action: Autonomous vs Human-in-the-Loop</span>
+        │
+        ▼  <span class="t-amber">[Structured n8n Webhook Trigger]</span>
+<span class="t-green">AUTOMATION BACKBONE (n8n Orchestration Engine)</span>
+├── Webhook Ingestion Node     <span class="t-gray">&larr; validates structured execution payload from LLM</span>
+├── Dynamic Sub-Workflow Router<span class="t-gray">&larr; dispatches tasks, calendar events &amp; notification jobs</span>
+├── Conditional Logic &amp; Retry  <span class="t-gray">&larr; handles schedule conflicts, retries &amp; API rate limits</span>
+└── Approval Gate Node         <span class="t-gray">&larr; pauses execution for high-impact actions pending user</span>
+        │
+   ┌────┴──────────────────────────┬─────────────────────────┐
+   ▼                               ▼                         ▼
+<span class="t-cyan">MEMORY (PostgreSQL)</span>          <span class="t-cyan">EXTERNAL SERVICES</span>         <span class="t-cyan">CLIENT FEEDBACK</span>
+├── Tasks &amp; Deadlines        ├── Google Calendar API   └── WebSocket Push
+├── User Habits &amp; Context    ├── Gmail / Email API         (Live status on UI)
+└── Workflow Audit Trail     └── Todoist / REST APIs</div>
+      </div>
+
+      <!-- Right 4 Pillars -->
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div class="card" style="padding:12px 16px; background:#e0f2fe; border-color:#0284c7;">
+          <div style="font-size:14px; font-weight:800; color:#0369a1;">AI = BRAIN</div>
+          <div style="font-size:12px; font-weight:750; color:#0f172a;">LLM Reasoning Engine</div>
+          <div style="font-size:11px; color:#475569; margin-top:2px;">Intent parsing, planning, prioritization, entity extraction, and tool selection.</div>
+        </div>
+
+        <div class="card" style="padding:12px 16px; background:#fef3c7; border-color:#d97706;">
+          <div style="font-size:14px; font-weight:800; color:#b45309;">n8n = EXECUTION</div>
+          <div style="font-size:12px; font-weight:750; color:#0f172a;">Orchestration Backbone</div>
+          <div style="font-size:11px; color:#475569; margin-top:2px;">Event triggers, conditional branch nodes, error handling, retries, and API dispatch.</div>
+        </div>
+
+        <div class="card" style="padding:12px 16px; background:#e6fffa; border-color:#0d9488;">
+          <div style="font-size:14px; font-weight:800; color:#0f766e;">DB = MEMORY</div>
+          <div style="font-size:12px; font-weight:750; color:#0f172a;">PostgreSQL / Supabase</div>
+          <div style="font-size:11px; color:#475569; margin-top:2px;">Tasks, deadlines, routines, schedule twin state, user habits, and execution logs.</div>
+        </div>
+
+        <div class="card" style="padding:12px 16px; background:#f1f5f9; border-color:#64748b;">
+          <div style="font-size:14px; font-weight:800; color:#475569;">DASHBOARD = INTERFACE</div>
+          <div style="font-size:12px; font-weight:750; color:#0f172a;">Personal Command Center</div>
+          <div style="font-size:11px; color:#475569; margin-top:2px;">Active priority deck, proactive suggestion cards, natural language input, and approvals.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brand">OPHELIA &bull; Intelligent Personal Automation Assistant</span>
+      <span>Slide 2 of 10</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: DATA FLOW -->
+  <div class="slide" id="slide-3">
+    <div class="slide-header">
+      <div class="tag-pill">DATA FLOW &amp; EXECUTION CYCLE</div>
+      <div class="slide-title">How OPHELIA Works: Left-to-Right Data Flow</div>
+      <div class="slide-subtitle">Decomposing high-level conversational intent into deterministic, multi-service execution</div>
+    </div>
+
+    <!-- 5 Flow Stages -->
+    <div class="grid-4col" style="grid-template-columns: repeat(5, 1fr); margin-bottom: 12px;">
+      <div class="card" style="padding:12px; background:#f1f5f9;">
+        <div style="font-size:12.5px; font-weight:800; color:#475569;">1. USER COMMAND</div>
+        <div style="font-size:10.5px; color:#64748b; margin-top:3px;">Natural input in Command Center UI</div>
+      </div>
+      <div class="card" style="padding:12px; background:#e0f2fe;">
+        <div style="font-size:12.5px; font-weight:800; color:#0369a1;">2. INTENT &amp; CONTEXT</div>
+        <div style="font-size:10.5px; color:#64748b; margin-top:3px;">LLM extracts goals, deadlines &amp; constraints</div>
+      </div>
+      <div class="card" style="padding:12px; background:#e6fffa;">
+        <div style="font-size:12.5px; font-weight:800; color:#0f766e;">3. REASON &amp; PLAN</div>
+        <div style="font-size:10.5px; color:#64748b; margin-top:3px;">Retrieves DB state; solves time slots</div>
+      </div>
+      <div class="card" style="padding:12px; background:#fef3c7;">
+        <div style="font-size:12.5px; font-weight:800; color:#b45309;">4. n8n EXECUTION</div>
+        <div style="font-size:10.5px; color:#64748b; margin-top:3px;">Executes multi-step APIs across tools</div>
+      </div>
+      <div class="card" style="padding:12px; background:#ecfdf5;">
+        <div style="font-size:12.5px; font-weight:800; color:#047857;">5. STATE &amp; SYNC</div>
+        <div style="font-size:10.5px; color:#64748b; margin-top:3px;">Updates memory &amp; live dashboard cards</div>
+      </div>
+    </div>
+
+    <!-- Concrete Walkthrough Box -->
+    <div class="card" style="padding:18px 22px; flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+      <div style="background:#f1f5f9; border-left:4px solid #0284c7; padding:10px 16px; border-radius:6px; font-weight:800; font-size:13.5px; color:#0369a1;">
+        REAL-WORLD USER COMMAND: &ldquo;I have two assignments due Wednesday and an exam on Friday. Organize my week around my existing schedule.&rdquo;
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px;">
+        <div style="background:#f8fafc; padding:10px 14px; border-radius:6px; border:1px solid #e2e8f0;">
+          <div style="font-size:12.5px; font-weight:800; color:#0f172a;">1. Identify Deadlines</div>
+          <div style="font-size:11px; color:#64748b; margin-top:2px;">Extracts Wed 11:59 PM (x2) &amp; Fri 9 AM exam dates from prompt.</div>
+        </div>
+        <div style="background:#f8fafc; padding:10px 14px; border-radius:6px; border:1px solid #e2e8f0;">
+          <div style="font-size:12.5px; font-weight:800; color:#0f172a;">2. Determine Priorities</div>
+          <div style="font-size:11px; color:#64748b; margin-top:2px;">Assigns highest weight to Exam prep, then Assignment #1 and #2.</div>
+        </div>
+        <div style="background:#f8fafc; padding:10px 14px; border-radius:6px; border:1px solid #e2e8f0;">
+          <div style="font-size:12.5px; font-weight:800; color:#0f172a;">3. Check Existing Schedule</div>
+          <div style="font-size:11px; color:#64748b; margin-top:2px;">Queries Google Calendar via n8n for classes, meetings &amp; events.</div>
+        </div>
+        <div style="background:#f8fafc; padding:10px 14px; border-radius:6px; border:1px solid #e2e8f0;">
+          <div style="font-size:12.5px; font-weight:800; color:#0f172a;">4. Find Available Time</div>
+          <div style="font-size:11px; color:#64748b; margin-top:2px;">Identifies open deep-work blocks on Mon, Tue, Wed, and Thu.</div>
+        </div>
+        <div style="background:#f8fafc; padding:10px 14px; border-radius:6px; border:1px solid #e2e8f0;">
+          <div style="font-size:12.5px; font-weight:800; color:#0f172a;">5. Generate Proposed Plan</div>
+          <div style="font-size:11px; color:#64748b; margin-top:2px;">Allocates 4x 90-min study blocks, 2x assignment blocks, and rest.</div>
+        </div>
+        <div style="background:#f8fafc; padding:10px 14px; border-radius:6px; border:1px solid #e2e8f0;">
+          <div style="font-size:12.5px; font-weight:800; color:#0f172a;">6. Execute via n8n</div>
+          <div style="font-size:11px; color:#64748b; margin-top:2px;">Triggers n8n workflow creating Google Calendar events &amp; tasks.</div>
+        </div>
+        <div style="background:#f8fafc; padding:10px 14px; border-radius:6px; border:1px solid #e2e8f0;">
+          <div style="font-size:12.5px; font-weight:800; color:#0f172a;">7. Add Reminders</div>
+          <div style="font-size:11px; color:#64748b; margin-top:2px;">Schedules automated notifications 24h &amp; 4h before each deadline.</div>
+        </div>
+        <div style="background:#f8fafc; padding:10px 14px; border-radius:6px; border:1px solid #e2e8f0;">
+          <div style="font-size:12.5px; font-weight:800; color:#0f172a;">8. Update Memory / DB</div>
+          <div style="font-size:11px; color:#64748b; margin-top:2px;">Commits new calendar IDs &amp; schedule state to PostgreSQL.</div>
+        </div>
+        <div style="background:#f8fafc; padding:10px 14px; border-radius:6px; border:1px solid #e2e8f0;">
+          <div style="font-size:12.5px; font-weight:800; color:#0f172a;">9. Dashboard Instant Sync</div>
+          <div style="font-size:11px; color:#64748b; margin-top:2px;">Refreshes Command Center UI with new schedule &amp; confirmation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brand">OPHELIA &bull; Intelligent Personal Automation Assistant</span>
+      <span>Slide 3 of 10</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: ONE-COMMAND AUTOMATION -->
+  <div class="slide" id="slide-4">
+    <div class="slide-header">
+      <div class="tag-pill">CORE DIFFERENTIATOR</div>
+      <div class="slide-title">One Command. Multiple Actions.</div>
+      <div class="slide-subtitle">Moving from passive conversational advice to verified multi-service execution</div>
+    </div>
+
+    <div class="card" style="padding:14px 20px; background:#f1f5f9; border-left:5px solid #0284c7; margin-bottom:14px;">
+      <div style="font-size:11.5px; font-weight:800; color:#0284c7; letter-spacing:0.5px;">USER INPUT TO COMMAND CENTER:</div>
+      <div style="font-size:16px; font-weight:800; color:#0f172a; margin-top:4px;">
+        &ldquo;I have an exam Friday and two assignments due Wednesday. Organize my week around my existing schedule.&rdquo;
+      </div>
+    </div>
+
+    <div class="grid-3col" style="height:auto; margin-bottom:14px;">
+      <div class="card" style="padding:16px 18px; background:#e0f2fe; border-color:#0284c7;">
+        <div style="font-size:14.5px; font-weight:850; color:#0369a1; margin-bottom:8px;">1. OPHELIA UNDERSTANDS</div>
+        <div style="font-size:12px; line-height:1.6; color:#0f172a;">
+          <div><strong>&bull; Deadlines:</strong> Wed 11:59 PM (x2) &amp; Fri 9 AM</div>
+          <div><strong>&bull; Priorities:</strong> Exam prep (Critical), Assignments (High)</div>
+          <div><strong>&bull; Existing Commitments:</strong> 14h lectures &amp; meetings</div>
+          <div><strong>&bull; Open Windows:</strong> Identifies free 2-hour blocks</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:16px 18px; background:#e6fffa; border-color:#0d9488;">
+        <div style="font-size:14.5px; font-weight:850; color:#0f766e; margin-bottom:8px;">2. OPHELIA PLANS</div>
+        <div style="font-size:12px; line-height:1.6; color:#0f172a;">
+          <div><strong>&bull; Spaced Study:</strong> 4x 90-min focused review blocks</div>
+          <div><strong>&bull; Assignment Sprints:</strong> 2x 2-hour deep-work blocks</div>
+          <div><strong>&bull; Buffer Protection:</strong> Automatic rest &amp; meal buffers</div>
+          <div><strong>&bull; Alert Cadence:</strong> Staggered reminder checkpoints</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:16px 18px; background:#fef3c7; border-color:#d97706;">
+        <div style="font-size:14.5px; font-weight:850; color:#b45309; margin-bottom:8px;">3. n8n EXECUTES</div>
+        <div style="font-size:12px; line-height:1.6; color:#0f172a;">
+          <div><strong>&bull; Google Calendar:</strong> 6 events scheduled in GCal</div>
+          <div><strong>&bull; Todoist / Notion:</strong> 5 milestone tasks created</div>
+          <div><strong>&bull; Notifications:</strong> Scheduled cron alerts configured</div>
+          <div><strong>&bull; Memory State:</strong> PostgreSQL twin state synchronized</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="padding:14px 20px;">
+      <div style="font-size:12px; font-weight:800; color:#0f172a; margin-bottom:4px;">WHY THIS FUNDAMENTALLY SURPASSES STANDARD CHATBOTS:</div>
+      <div style="font-size:11.5px; color:#475569; line-height:1.5;">
+        <span style="color:#dc2626; font-weight:800;">&times; Standard Chatbot:</span> Outputs a static wall of text advice (&ldquo;Here is a suggested schedule... you should open your calendar and add these&rdquo;). User still does 20+ minutes of manual labor.<br>
+        <span style="color:#10b981; font-weight:800;">&#10004; OPHELIA Command Center:</span> Directly triggers n8n workflows. In under 2 seconds, events are scheduled, tasks created, and reminders set. It&rsquo;s already handled.
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brand">OPHELIA &bull; Intelligent Personal Automation Assistant</span>
+      <span>Slide 4 of 10</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: PROACTIVE ASSISTANT -->
+  <div class="slide" id="slide-5">
+    <div class="slide-header">
+      <div class="tag-pill">PROACTIVE INTELLIGENCE</div>
+      <div class="slide-title">OPHELIA Doesn&rsquo;t Always Wait to Be Asked</div>
+      <div class="slide-subtitle">Continuous background monitoring surfaces critical interventions before problems escalate</div>
+    </div>
+
+    <div class="grid-even-2col">
+      <div class="card" style="padding:20px 24px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-size:16px; font-weight:800; color:#0f172a; margin-bottom:6px;">Continuous Background Monitoring</div>
+          <div style="font-size:12px; color:#475569; margin-bottom:14px;">n8n scheduled cron workflows query calendar and task state periodically, feeding context to the AI reasoner to detect:</div>
+
+          <div style="font-size:12px; line-height:1.65; color:#0f172a;">
+            <div><strong style="color:#0284c7;">&bull; Upcoming Deadlines:</strong> Identifies assignments due within 24-48h with insufficient work time.</div>
+            <div><strong style="color:#0284c7;">&bull; Schedule Conflicts:</strong> Detects meetings overlapping with planned focus time.</div>
+            <div><strong style="color:#0284c7;">&bull; Unfinished Tasks:</strong> Flags overdue backlog items and generates recovery slots.</div>
+            <div><strong style="color:#0284c7;">&bull; Overloaded Days:</strong> Alerts when commitments exceed sustainable daily focus limits.</div>
+            <div><strong style="color:#0284c7;">&bull; Habit &amp; Routine Drift:</strong> Notices deviations from morning planning and rest routines.</div>
+          </div>
+        </div>
+
+        <div style="font-size:11px; font-style:italic; color:#0d9488; background:#f0fdfa; padding:10px 14px; border-radius:6px; border:1px solid #ccfbf1;">
+          &#9733; <strong>Realistic Boundary:</strong> OPHELIA does not unilaterally hijack the user&rsquo;s calendar. High-impact shifts are presented as clear actionable recommendations requiring 1-click confirmation.
+        </div>
+      </div>
+
+      <div class="card" style="background:#0f172a; border-color:#334155; padding:0; overflow:hidden; display:flex; flex-direction:column;">
+        <div style="background:#1e293b; padding:12px 18px; border-bottom:1px solid #334155; font-size:11.5px; font-weight:800; color:#38bdf8; letter-spacing:0.5px;">
+          AI COMMAND CENTER &bull; PROACTIVE INTERVENTION CARD
+        </div>
+        <div style="padding:20px 24px; flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="font-size:19px; font-weight:850; color:#f8fafc;">Good morning, Punya.</div>
+            <div style="font-size:12.5px; color:#94a3b8; margin-top:4px; margin-bottom:12px;">OPHELIA has analyzed your day and detected a schedule conflict:</div>
+
+            <div style="font-size:12px; line-height:1.65; color:#f1f5f9;">
+              <div>&bull; You have <strong>4 active tasks</strong> scheduled for today.</div>
+              <div style="color:#fbbf24;">&bull; ⚠️ <strong>Conflict:</strong> Your 3:00 PM team sync overlaps with planned assignment work.</div>
+              <div style="color:#fbbf24;">&bull; ⚠️ <strong>Urgent:</strong> Assignment #2 is due tomorrow at 11:59 PM.</div>
+            </div>
+
+            <div style="background:#1e293b; border:1px solid #38bdf8; border-radius:6px; padding:12px 16px; margin-top:14px;">
+              <div style="font-size:10.5px; font-weight:800; color:#38bdf8;">SUGGESTED ACTION PLAN:</div>
+              <div style="font-size:12.5px; color:#f8fafc; margin-top:3px;">
+                Move today&rsquo;s study session to <strong>7:00 PM</strong> and schedule a <strong>90-minute work block</strong> at 4:30 PM.
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;">
+            <button class="btn-action-secondary">Review Plan</button>
+            <button class="btn-action-primary">&zap; Execute via n8n</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brand">OPHELIA &bull; Intelligent Personal Automation Assistant</span>
+      <span>Slide 5 of 10</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: CONTEXT-AWARE DECISION MAKING -->
+  <div class="slide" id="slide-6">
+    <div class="slide-header">
+      <div class="tag-pill">INTELLIGENT DECISION ENGINE</div>
+      <div class="slide-title">Context-Aware Decision Making</div>
+      <div class="slide-subtitle">Why situational reasoning fundamentally surpasses rigid &ldquo;If-This-Then-That&rdquo; automation</div>
+    </div>
+
+    <div class="grid-even-2col">
+      <div class="card" style="padding:18px 22px; border-color:#fca5a5;">
+        <div style="font-size:15px; font-weight:850; color:#dc2626; margin-bottom:8px;">TRADITIONAL AUTOMATION (Brittle Rules)</div>
+        <div style="background:#fef2f2; border:1px solid #fecaca; padding:8px 14px; border-radius:6px; font-family:Consolas, monospace; font-size:12px; color:#991b1b; text-align:center; margin-bottom:12px; font-weight:700;">
+          Trigger &rarr; Hardcoded Rule &rarr; Static Action
+        </div>
+
+        <div style="font-size:11.5px; line-height:1.65; color:#0f172a;">
+          <p><strong>Scenario:</strong> An incoming email arrives containing assignment details.</p>
+          <p><strong>Fixed Rule:</strong> &ldquo;If email subject contains 'assignment' &rarr; create task in Todoist.&rdquo;</p>
+          <p><strong>Blind Execution:</strong> Creates task with no due date, blind to upcoming exams, and schedules zero study time on the calendar.</p>
+          <p style="color:#b91c1c;"><strong>Failure Modes:</strong><br>
+          &bull; Overlaps with existing commitments<br>
+          &bull; Ignores urgent deadline pressure<br>
+          &bull; Creates notification clutter without solving the problem</p>
+          <p><strong>Outcome:</strong> User is still forced to manually assess, reschedule, and plan everything.</p>
+        </div>
+      </div>
+
+      <div class="card" style="padding:18px 22px; border-color:#0284c7; box-shadow:0 4px 15px rgba(2, 132, 199, 0.1);">
+        <div style="font-size:15px; font-weight:850; color:#0284c7; margin-bottom:8px;">OPHELIA CONTEXT-AWARE SYSTEM (Adaptive AI)</div>
+        <div style="background:#e0f2fe; border:1px solid #bae6fd; padding:8px 14px; border-radius:6px; font-family:Consolas, monospace; font-size:12px; color:#0369a1; text-align:center; margin-bottom:12px; font-weight:700;">
+          Trigger &rarr; Context Engine &rarr; AI Reasoner &rarr; n8n Plan
+        </div>
+
+        <div style="font-size:11.5px; line-height:1.65; color:#0f172a;">
+          <p><strong>Scenario:</strong> Same incoming email arrives containing assignment details.</p>
+          <p><strong>Context Engine:</strong> Extracts deadline (Wed), checks Friday exam density, queries existing calendar load, and evaluates user work habits.</p>
+          <p><strong>Intelligent Decision:</strong> Synthesizes non-conflicting study sprints, protects high-energy focus slots, and schedules reminders.</p>
+          <p style="color:#047857;"><strong>Autonomous Execution via n8n:</strong><br>
+          &bull; Inserts 2x 90-min focused blocks into Google Calendar<br>
+          &bull; Creates structured Todoist milestones with due dates<br>
+          &bull; Configures reminder webhooks &amp; updates Command Center</p>
+          <p><strong>Outcome:</strong> Context understood, plan synthesized, action completed with zero manual friction.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brand">OPHELIA &bull; Intelligent Personal Automation Assistant</span>
+      <span>Slide 6 of 10</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: OPHELIA MODES -->
+  <div class="slide" id="slide-7">
+    <div class="slide-header">
+      <div class="tag-pill">MODULAR VERSATILITY</div>
+      <div class="slide-title">Specialized Modes, One Unified Intelligence</div>
+      <div class="slide-subtitle">Different specialized workflows powered by the identical core OPHELIA reasoning &amp; n8n architecture</div>
+    </div>
+
+    <div class="grid-2x2" style="margin-bottom:12px;">
+      <div class="card" style="padding:14px 18px; background:#e0f2fe; border-color:#0284c7;">
+        <div style="font-size:15px; font-weight:850; color:#0369a1;">&#10070; Personal Assistant Mode</div>
+        <div style="font-size:12px; font-weight:750; color:#0f172a;">Daily Schedule &amp; Executive Planning</div>
+        <div style="font-size:11px; color:#475569; line-height:1.55; margin-top:4px;">
+          &bull; Dynamic calendar orchestration &amp; meeting conflict resolution<br>
+          &bull; Daily morning priorities brief &amp; attention management<br>
+          &bull; Administrative chore reminders &amp; cross-service sync
+        </div>
+      </div>
+
+      <div class="card" style="padding:14px 18px; background:#e6fffa; border-color:#0d9488;">
+        <div style="font-size:15px; font-weight:850; color:#0f766e;">&#10070; Study Assistant Mode</div>
+        <div style="font-size:12px; font-weight:750; color:#0f172a;">Academic Planning &amp; Deadline Mastery</div>
+        <div style="font-size:11px; color:#475569; line-height:1.55; margin-top:4px;">
+          &bull; Syllabus &amp; assignment deadline extraction<br>
+          &bull; Spaced study block scheduling balanced against exam loads<br>
+          &bull; Assignment milestone decomposition (Research &rarr; Draft &rarr; Submit)
+        </div>
+      </div>
+
+      <div class="card" style="padding:14px 18px; background:#fef3c7; border-color:#d97706;">
+        <div style="font-size:15px; font-weight:850; color:#b45309;">&#10070; Wellness Companion Mode</div>
+        <div style="font-size:12px; font-weight:750; color:#0f172a;">Sustainable Cadence &amp; Habit Routines</div>
+        <div style="font-size:11px; color:#475569; line-height:1.55; margin-top:4px;">
+          &bull; Daily work-rest rhythm optimization to prevent burnout<br>
+          &bull; Hydration, posture, and screen-break reminders during focus blocks<br>
+          &bull; Routine consistency tracking (Non-clinical; Zero medical claims)
+        </div>
+      </div>
+
+      <div class="card" style="padding:14px 18px; background:#f1f5f9; border-color:#64748b;">
+        <div style="font-size:15px; font-weight:850; color:#475569;">&#10070; Caretaker Mode</div>
+        <div style="font-size:12px; font-weight:750; color:#0f172a;">Family &amp; Recurring Responsibility Logistics</div>
+        <div style="font-size:11px; color:#475569; line-height:1.55; margin-top:4px;">
+          &bull; Coordination for family schedules &amp; appointments<br>
+          &bull; Household maintenance schedules &amp; service reminders<br>
+          &bull; Time-sensitive medication logistics (reminders only)
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="padding:12px 18px;">
+      <div style="font-size:11.5px; font-weight:800; color:#0284c7;">CORE ARCHITECTURAL PRINCIPLE: SHARED CONTEXT, DEDICATED WORKFLOWS</div>
+      <div style="font-size:10.5px; color:#475569; margin-top:3px;">
+        These modes are NOT separate siloed bots. They share the same PostgreSQL memory, user preferences, and n8n backbone. Switching modes dynamically applies specialized prompt schemas and conditional n8n workflow triggers without fragmenting user state.
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brand">OPHELIA &bull; Intelligent Personal Automation Assistant</span>
+      <span>Slide 7 of 10</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: MEMORY, PERSONALIZATION & USER CONTROL -->
+  <div class="slide" id="slide-8">
+    <div class="slide-header">
+      <div class="tag-pill">GOVERNANCE &amp; SAFETY</div>
+      <div class="slide-title">Memory, Personalization &amp; User Control</div>
+      <div class="slide-subtitle">Grounded in persistent state with strict safety gates, human-in-the-loop approvals, and full auditability</div>
+    </div>
+
+    <div class="grid-3col">
+      <div class="card" style="padding:16px 18px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-size:14px; font-weight:850; color:#0284c7;">1. Persistent Memory &amp; State</div>
+          <div style="font-size:10.5px; color:#475569; margin-top:3px; margin-bottom:10px;">PostgreSQL / Supabase stores:</div>
+          <div style="font-size:11px; line-height:1.6; color:#0f172a;">
+            <div><strong>&bull; User Preferences:</strong> Preferred work hours, focus limits.</div>
+            <div><strong>&bull; Task Registry:</strong> Active backlog with priority weights.</div>
+            <div><strong>&bull; Routines &amp; Habits:</strong> Recurring daily cadence.</div>
+            <div><strong>&bull; Calendar Twin:</strong> Cached mirror to detect collisions.</div>
+            <div><strong>&bull; Execution History:</strong> Log of past workflow runs.</div>
+          </div>
+        </div>
+        <div style="font-size:10.5px; font-style:italic; color:#0d9488; margin-top:8px;">
+          No stateless amnesia. Context compounds over time.
+        </div>
+      </div>
+
+      <div class="card" style="padding:16px 18px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="font-size:14px; font-weight:850; color:#0d9488;">2. Dual-Tier User Governance</div>
+        
+        <div style="background:#f0fdf4; border:1px solid #86efac; border-radius:6px; padding:10px 12px; margin-top:8px;">
+          <div style="font-size:11px; font-weight:800; color:#166534;">&#10004; LOW-RISK (Fully Autonomous)</div>
+          <div style="font-size:10px; color:#14532d; line-height:1.45; margin-top:3px;">
+            &bull; Adding personal reminder notifications<br>
+            &bull; Scheduling non-conflicting study blocks<br>
+            &bull; Drafting task lists &amp; checklists
+          </div>
+        </div>
+
+        <div style="background:#fef3c7; border:1px solid #fcd34d; border-radius:6px; padding:10px 12px; margin-top:8px;">
+          <div style="font-size:11px; font-weight:800; color:#92400e;">⚠️ HIGH-IMPACT (Approval Required)</div>
+          <div style="font-size:10px; color:#78350f; line-height:1.45; margin-top:3px;">
+            &bull; Sending external emails or comms<br>
+            &bull; Rescheduling existing meetings<br>
+            &bull; Overwriting or deleting calendar events
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="background:#0b1120; border-color:#1e293b; padding:14px 16px; font-family:Consolas, monospace;">
+        <div style="font-size:12.5px; font-weight:800; color:#38bdf8; margin-bottom:8px;">3. Audit Log &amp; Transparency</div>
+        <div style="font-size:10px; line-height:1.5; color:#94a3b8;">
+          <span style="color:#38bdf8;">[10:14:02] REASONING TRACE</span><br>
+          Detected conflict: GCal ID #819<br>
+          Generated plan: Shift to 19:00<br>
+          <span style="color:#fbbf24;">Safety check: Approval Required</span><br><br>
+          <span style="color:#34d399;">[10:14:15] USER ACTION</span><br>
+          <span style="color:#f1f5f9;">User approved recommendation</span><br><br>
+          <span style="color:#38bdf8;">[10:14:16] n8n DISPATCH</span><br>
+          POST /webhook/reschedule-event<br>
+          <span style="color:#34d399;">HTTP 200: GCal updated</span><br>
+          Task ID #409 inserted in DB<br><br>
+          <span style="color:#34d399;">[10:14:17] STATE SYNCHRONIZED</span><br>
+          Dashboard updated. 1-click rollback available.
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brand">OPHELIA &bull; Intelligent Personal Automation Assistant</span>
+      <span>Slide 8 of 10</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: WHAT WE WILL ACTUALLY BUILD (MVP) -->
+  <div class="slide" id="slide-9">
+    <div class="slide-header">
+      <div class="tag-pill">HACKATHON SCOPE &amp; FEASIBILITY</div>
+      <div class="slide-title">What We Will Actually Build (Hackathon MVP)</div>
+      <div class="slide-subtitle">A tightly scoped, technically convincing implementation connecting Next.js, LLM reasoning, and n8n</div>
+    </div>
+
+    <div class="grid-4col" style="margin-bottom:12px;">
+      <div class="card" style="padding:14px 16px; background:#e0f2fe; border-color:#0284c7;">
+        <div style="font-size:13.5px; font-weight:850; color:#0369a1;">1. AI Personal Dashboard</div>
+        <div style="font-size:10.5px; font-weight:750; color:#0f172a;">Next.js / React Web App</div>
+        <div style="font-size:9.5px; color:#475569; line-height:1.55; margin-top:4px;">
+          &bull; Task &amp; schedule visualization grid<br>
+          &bull; Active attention deck with priorities<br>
+          &bull; Proactive suggestion cards<br>
+          &bull; Natural language command bar
+        </div>
+      </div>
+
+      <div class="card" style="padding:14px 16px; background:#e6fffa; border-color:#0d9488;">
+        <div style="font-size:13.5px; font-weight:850; color:#0f766e;">2. AI Decision Layer</div>
+        <div style="font-size:10.5px; font-weight:750; color:#0f172a;">LLM Reasoning Engine</div>
+        <div style="font-size:9.5px; color:#475569; line-height:1.55; margin-top:4px;">
+          &bull; Intent &amp; deadline extraction<br>
+          &bull; Calendar collision detection<br>
+          &bull; Structured function calling (JSON Plan)<br>
+          &bull; Autonomous vs. approval evaluator
+        </div>
+      </div>
+
+      <div class="card" style="padding:14px 16px; background:#fef3c7; border-color:#d97706;">
+        <div style="font-size:13.5px; font-weight:850; color:#b45309;">3. n8n Automation Engine</div>
+        <div style="font-size:10.5px; font-weight:750; color:#0f172a;">Orchestration Backbone</div>
+        <div style="font-size:9.5px; color:#475569; line-height:1.55; margin-top:4px;">
+          &bull; Webhooks receiving execution plans<br>
+          &bull; Google Calendar &amp; Task API nodes<br>
+          &bull; Conditional retry &amp; error handlers<br>
+          &bull; Cron nodes running background audits
+        </div>
+      </div>
+
+      <div class="card" style="padding:14px 16px; background:#f1f5f9; border-color:#64748b;">
+        <div style="font-size:13.5px; font-weight:850; color:#475569;">4. Persistent Memory</div>
+        <div style="font-size:10.5px; font-weight:750; color:#0f172a;">PostgreSQL / Supabase</div>
+        <div style="font-size:9.5px; color:#475569; line-height:1.55; margin-top:4px;">
+          &bull; Tasks, deadlines &amp; priority tables<br>
+          &bull; User schedule cache &amp; habits<br>
+          &bull; Execution history audit trail<br>
+          &bull; Active workflow run status
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="padding:14px 20px;">
+      <div style="font-size:12px; font-weight:850; color:#0284c7; margin-bottom:4px;">DEMONSTRABLE END-TO-END WORKFLOWS (THE HACKATHON PROOF):</div>
+      <div style="font-size:11px; line-height:1.55; color:#0f172a;">
+        <div><strong>&zap; Workflow 1: One-Command Exam &amp; Assignment Organizer:</strong> User enters one sentence &rarr; LLM plans &rarr; n8n schedules 6 GCal events + 4 Todoist tasks + sets notification cron.</div>
+        <div style="margin-top:2px;"><strong>&zap; Workflow 2: Morning Conflict Detection &amp; Proactive Resolution:</strong> n8n cron detects 3 PM collision &rarr; LLM synthesizes adjustment &rarr; Dashboard renders card &rarr; 1-click execution updates GCal.</div>
+        <div style="font-size:10.5px; font-weight:800; color:#10b981; margin-top:5px;">
+          &#9733; Judge Takeaway: Goal is to demonstrate complete, reliable autonomous workflows &mdash; not a disconnected collection of toy features.
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brand">OPHELIA &bull; Intelligent Personal Automation Assistant</span>
+      <span>Slide 9 of 10</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: FUTURE SCOPE & IMPACT -->
+  <div class="slide" id="slide-10">
+    <div class="slide-header">
+      <div class="tag-pill">ROADMAP &amp; VISION</div>
+      <div class="slide-title">Future Scope &amp; The Paradigm Shift</div>
+      <div class="slide-subtitle">Transforming AI from a passive system that advises into an active partner that executes</div>
+    </div>
+
+    <div class="grid-4col" style="margin-bottom:14px;">
+      <div class="card" style="padding:12px 16px; background:#e0f2fe; border-color:#0284c7;">
+        <div style="font-size:12.5px; font-weight:850; color:#0369a1;">&#10022; Ecosystem Expansion</div>
+        <div style="font-size:10.5px; color:#475569; margin-top:3px;">Integrate Canvas LMS, Notion API, Outlook Calendar &amp; Slack bots.</div>
+      </div>
+      <div class="card" style="padding:12px 16px; background:#e6fffa; border-color:#0d9488;">
+        <div style="font-size:12.5px; font-weight:850; color:#0f766e;">&#10022; Native Mobile App</div>
+        <div style="font-size:10.5px; color:#475569; margin-top:3px;">iOS &amp; Android command center widgets for on-the-go glanceability.</div>
+      </div>
+      <div class="card" style="padding:12px 16px; background:#fef3c7; border-color:#d97706;">
+        <div style="font-size:12.5px; font-weight:850; color:#b45309;">&#10022; Advanced Optimization</div>
+        <div style="font-size:10.5px; color:#475569; margin-top:3px;">Multi-objective constraint solvers balancing energy &amp; focus depth.</div>
+      </div>
+      <div class="card" style="padding:12px 16px; background:#f1f5f9; border-color:#64748b;">
+        <div style="font-size:12.5px; font-weight:850; color:#475569;">&#10022; Hands-Free Voice</div>
+        <div style="font-size:10.5px; color:#475569; margin-top:3px;">Dedicated speech interface deliberately scoped for Phase 2 roadmap.</div>
+      </div>
+    </div>
+
+    <div class="card" style="background:#0b1120; border-color:#1e293b; padding:24px 30px; flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <div style="font-size:13px; font-weight:800; color:#38bdf8; letter-spacing:0.8px;">THE PARADIGM SHIFT IN AI AUTOMATION</div>
+        <div style="font-size:15px; color:#f1f5f9; margin-top:6px;">
+          OPHELIA transforms AI from a system that merely responds to requests into a system that can:
+        </div>
+        <div style="font-size:18px; font-weight:850; color:#34d399; margin-top:8px; letter-spacing:0.5px;">
+          UNDERSTAND &rarr; REASON &rarr; PLAN &rarr; EXECUTE VIA n8n &rarr; LEARN FROM CONTEXT
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:46px; font-weight:900; color:#ffffff; letter-spacing:-1px;">OPHELIA</div>
+        <div style="font-size:18px; color:#94a3b8; font-weight:650; margin-top:2px;">Your personal command center for getting things done.</div>
+      </div>
+    </div>
+
+    <div class="slide-footer" style="border-top-color:#334155;">
+      <span class="brand" style="color:#38bdf8;">OPHELIA &bull; Intelligent Personal Automation Assistant</span>
+      <span style="color:#94a3b8;">Slide 10 of 10</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Presentation Controls -->
+<div class="controls">
+  <button class="btn-nav" id="btn-prev" onclick="changeSlide(-1)">&larr; Previous</button>
+  <span class="slide-indicator" id="slide-num">Slide 1 of 10</span>
+  <button class="btn-nav" id="btn-next" onclick="changeSlide(1)">Next &rarr;</button>
+  <button class="btn-nav" onclick="toggleFullscreen()">&#x26F6; Fullscreen</button>
+  <span style="color:#64748b; font-size:12px;">(Use Arrow keys or Spacebar to navigate)</span>
+</div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 10;
+
+  function showSlide(num) {
+    if (num < 1) num = 1;
+    if (num > totalSlides) num = totalSlides;
+    currentSlide = num;
+
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById('slide-' + currentSlide);
+    if (target) target.classList.add('active');
+
+    document.getElementById('slide-num').innerText = 'Slide ' + currentSlide + ' of ' + totalSlides;
+    document.getElementById('btn-prev').disabled = (currentSlide === 1);
+    document.getElementById('btn-next').disabled = (currentSlide === totalSlides);
+  }
+
+  function changeSlide(delta) {
+    showSlide(currentSlide + delta);
+  }
+
+  function toggleFullscreen() {
+    const stage = document.getElementById('stage');
+    if (!document.fullscreenElement) {
+      stage.requestFullscreen().catch(err => alert("Error enabling fullscreen"));
+    } else {
+      document.exitFullscreen();
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      e.preventDefault();
+      changeSlide(1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      changeSlide(-1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      showSlide(1);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      showSlide(totalSlides);
+    }
+  });
+
+  showSlide(1);
+</script>
+</body>
+</html>
