@@ -36,7 +36,6 @@ Everyday knowledge workers and students waste hours performing repetitive, fragm
 * **Repetitive Decision Fatigue:** Users repeatedly evaluate deadlines, calculate free time slots, manually reschedule overlapping meetings, and set ad-hoc reminders.
 * **Brittle Automation:** Existing automation tools (e.g., standard Zapier / IFTTT recipes) rely on rigid `IF-THIS-THEN-THAT` rules. They cannot extract implicit context, understand conflicting priorities, or adapt when a schedule shifts.
 
-👉 *Read the full problem breakdown in [docs/problem-statement.md](docs/problem-statement.md).*
 
 ---
 
