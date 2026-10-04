@@ -36,6 +36,8 @@ Everyday knowledge workers and students waste hours performing repetitive, fragm
 * **Repetitive Decision Fatigue:** Users repeatedly evaluate deadlines, calculate free time slots, manually reschedule overlapping meetings, and set ad-hoc reminders.
 * **Brittle Automation:** Existing automation tools (e.g., standard Zapier / IFTTT recipes) rely on rigid `IF-THIS-THEN-THAT` rules. They cannot extract implicit context, understand conflicting priorities, or adapt when a schedule shifts.
 
+  👉 *Read the full problem breakdown in [docs/problem-statement.md](docs/problem-statement.md).*
+
 
 ---
 
@@ -43,13 +45,6 @@ Everyday knowledge workers and students waste hours performing repetitive, fragm
 
 OPHELIA bridges the gap between high-level human intent and low-level API execution by cleanly separating responsibilities across five distinct architectural pillars:
 
-$$egin{aligned}
-\mathbf{AI} &\implies 	extbf{The Brain} \quad &&	ext{(Intent parsing, context extraction, multi-step planning)} \
-\mathbf{n8n} &\implies 	extbf{The Automation Backbone} \quad &&	ext{(Workflow triggers, conditional logic, API dispatch)} \
-\mathbf{Database} &\implies 	extbf{The Memory} \quad &&	ext{(Tasks, deadlines, schedule twin state, audit logs)} \
-\mathbf{Dashboard} &\implies 	extbf{The Interface} \quad &&	ext{(AI Personal Command Center, active feeds, 1-click approvals)} \
-\mathbf{External\ APIs} &\implies 	extbf{The Tools} \quad &&	ext{(Google Calendar, Gmail, Todoist, Push notifications)}
-\end{aligned}$$
 
 ```mermaid
 flowchart LR
